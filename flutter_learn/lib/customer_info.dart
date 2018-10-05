@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CustomerInfo extends StatelessWidget {
+  dynamic name;
+  CustomerInfo(this.name);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -8,13 +10,14 @@ class CustomerInfo extends StatelessWidget {
       color: Color.fromRGBO(33, 64, 95, 1.0),
       width: double.infinity,
       height: 230.0,
-      child: _Content(),
-      margin: EdgeInsets.fromLTRB(2.5, 0.0, 2.5, 0.0),
+      child: _Content(name),
     );
   }
 }
 
 class _Content extends StatelessWidget {
+  dynamic name;
+  _Content(this.name);
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -27,13 +30,19 @@ class _Content extends StatelessWidget {
                 child: Text(
                   "Close",
                   textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 20.0, color: Colors.white),
+                  style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                      fontFamily: "SFProText-Regular"),
                 ),
               ),
               Expanded(
                 child: Text("Edit",
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 20.0, color: Colors.white)),
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.white,
+                        fontFamily: "SFProText-Regular")),
               )
             ],
           ),
@@ -41,12 +50,13 @@ class _Content extends StatelessWidget {
         ),
         Container(
           child: Text(
-            "Francium Tech",
+            name.toString(),
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontSize: 35.0,
-                color: Colors.white,
-                fontWeight: FontWeight.bold),
+                color: Color.fromRGBO(255, 255, 255, 1.0),
+                fontWeight: FontWeight.bold,
+                fontFamily: "SFProDisplay-Bold"),
           ),
           margin: EdgeInsets.all(10.0),
         ),
@@ -57,6 +67,7 @@ class _Content extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   FloatingActionButton(
+                      onPressed: null,
                       mini: true,
                       backgroundColor: Colors.white,
                       child: Container(
@@ -70,7 +81,10 @@ class _Content extends StatelessWidget {
                   Container(
                     child: Text(
                       "Call",
-                      style: TextStyle(color: Colors.white, fontSize: 15.0),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.0,
+                          fontFamily: "SFProText-Regular"),
                     ),
                     margin: EdgeInsets.fromLTRB(0.0, 1.0, 0.0, 1.0),
                   )
@@ -82,6 +96,7 @@ class _Content extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   FloatingActionButton(
+                      onPressed: null,
                       mini: true,
                       backgroundColor: Colors.white,
                       child: Container(
@@ -95,7 +110,10 @@ class _Content extends StatelessWidget {
                   Container(
                     child: Text(
                       "Whatsapp",
-                      style: TextStyle(color: Colors.white, fontSize: 15.0),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.0,
+                          fontFamily: "SFProText-Regular"),
                     ),
                     margin: EdgeInsets.fromLTRB(0.0, 1.0, 0.0, 1.0),
                   )
@@ -107,6 +125,7 @@ class _Content extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   FloatingActionButton(
+                      onPressed: null,
                       mini: true,
                       backgroundColor: Colors.white,
                       child: Container(
@@ -120,7 +139,10 @@ class _Content extends StatelessWidget {
                   Container(
                     child: Text(
                       "Email",
-                      style: TextStyle(color: Colors.white, fontSize: 15.0),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15.0,
+                          fontFamily: "SFProText-Regular"),
                     ),
                     margin: EdgeInsets.fromLTRB(0.0, 1.0, 0.0, 1.0),
                   )

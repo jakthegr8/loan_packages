@@ -1,51 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package_layout.dart';
 import 'package:intl/intl.dart';
 
 class Summary extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-      decoration: BoxDecoration(
-          border: Border(
-              left: BorderSide(style: BorderStyle.solid, color: Colors.black),
-              right: BorderSide(style: BorderStyle.solid, color: Colors.black),
-              bottom:
-                  BorderSide(style: BorderStyle.solid, color: Colors.black))),
-      width: double.infinity,
-      margin: EdgeInsets.fromLTRB(2.0, 0.0, 2.0, 0.0),
-      child: _Content(),
-    );
+  dynamic summary,prop_type,price;
+  Summary(this.summary)
+  {
+    prop_type = summary[0]['prop_type'];
+    price = summary[1]['price'];
   }
-}
 
-class _Content extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    List<Widget> lists = [
-      Container(
-        width: double.infinity,
-        child: _SummaryContent(),
-        decoration: BoxDecoration(color: Colors.white70),
-      ),
-      Container(
-        width: double.infinity,
-        child: _LoanPackages(),
-        decoration: BoxDecoration(color: Colors.grey.shade200),
-      )
-    ];
-    return ListView.builder(
-        itemCount: lists.length,
-        itemBuilder: (context, index) {
-          return lists[index];
-        });
-//
-  }
-}
-
-class _SummaryContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -60,8 +23,9 @@ class _SummaryContent extends StatelessWidget {
                   textAlign: TextAlign.left,
                   style: TextStyle(
                       fontSize: 25.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
+                      color: Color.fromRGBO(51, 51, 51, 1.0),
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "SFProDisplay-Bold"),
                 ),
               ),
               Expanded(
@@ -69,6 +33,7 @@ class _SummaryContent extends StatelessWidget {
                     textAlign: TextAlign.right,
                     style: TextStyle(
                         fontSize: 20.0,
+                        fontFamily: "SFProDisplay-Regular",
                         color: Color.fromRGBO(0, 68, 221, 1.0))),
               )
             ],
@@ -84,14 +49,18 @@ class _SummaryContent extends StatelessWidget {
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 20.0,
+                    fontFamily: "SFProDisplay-Regular",
                     color: Color.fromRGBO(128, 128, 128, 1.0),
                   ),
                 ),
               ),
               Expanded(
-                child: Text("Landed House",
+                child: Text(prop_type.toString(),
                     textAlign: TextAlign.right,
-                    style: TextStyle(fontSize: 20.0, color: Colors.black)),
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        color: Color.fromRGBO(51, 51, 51, 1.0),
+                        fontFamily: "SFProDisplay-Regular")),
               )
             ],
           ),
@@ -112,16 +81,18 @@ class _SummaryContent extends StatelessWidget {
                   textAlign: TextAlign.left,
                   style: TextStyle(
                     fontSize: 20.0,
+                    fontFamily: "SFProDisplay-Regular",
                     color: Color.fromRGBO(128, 128, 128, 1.0),
                   ),
                 ),
               ),
               Text(
                 NumberFormat.currency(symbol: "\$", decimalDigits: 0)
-                    .format(368000),
+                    .format(int.parse(price)),
                 style: TextStyle(
-                  fontSize: 20.0,
-                ),
+                    fontSize: 20.0,
+                    color: Color.fromRGBO(51, 51, 51, 1.0),
+                    fontFamily: "SFProDisplay-Regular"),
               ),
             ],
           ),
@@ -142,14 +113,18 @@ class _SummaryContent extends StatelessWidget {
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       fontSize: 20.0,
+                      fontFamily: "SFProDisplay-Regular",
                       color: Color.fromRGBO(128, 128, 128, 1.0),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: Text("Aug 15 2018",
+                  child: Text(DateFormat('MMM dd yyyy').format(DateTime.now()),
                       textAlign: TextAlign.right,
-                      style: TextStyle(fontSize: 20.0, color: Colors.black)),
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: Color.fromRGBO(51, 51, 51, 1.0),
+                          fontFamily: "SFProDisplay-Regular")),
                 )
               ],
             ),
@@ -164,7 +139,7 @@ class _SummaryContent extends StatelessWidget {
               children: <Widget>[
                 LinearProgressIndicator(
                   value: 0.2,
-                  backgroundColor: Colors.grey.shade300,
+                  backgroundColor: Color.fromRGBO(235, 235, 235, 1.0),
                   valueColor: AlwaysStoppedAnimation<Color>(Colors.deepOrange),
                 ),
                 Container(
@@ -181,76 +156,6 @@ class _SummaryContent extends StatelessWidget {
               ],
             ),
             margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 15.0))
-      ],
-    );
-  }
-}
-
-class _LoanPackages extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    return Column(
-      children: <Widget>[
-        Container(
-            child: Row(
-              children: <Widget>[
-                Text(
-                  "Loan packages",
-                  textAlign: TextAlign.left,
-                  style: TextStyle(
-                      fontSize: 25.0,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold),
-                ),
-                Expanded(
-                  child: Text("Filter",
-                      textAlign: TextAlign.right,
-                      style: TextStyle(
-                          fontSize: 20.0,
-                          color: Color.fromRGBO(0, 68, 221, 1.0))),
-                )
-              ],
-            ),
-            margin: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 5.0)),
-        Package(),
-        Package(),
-        Package(),
-        Package(),
-        Package(),
-        Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              color: Colors.white),
-          child: Container(
-            child: Text(
-              "Recalculate",
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.indigo, fontSize: 20.0),
-            ),
-            margin: EdgeInsets.all(15.0),
-          ),
-          width: double.infinity,
-          margin: EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 15.0),
-        ),
-        Container(
-          color: Colors.white,
-          child: Container(
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-                color: Colors.deepOrangeAccent),
-            child: Container(
-              child: Text(
-                "Send Referral",
-                textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.white, fontSize: 20.0),
-              ),
-              margin: EdgeInsets.all(15.0),
-            ),
-            width: double.infinity,
-            margin: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0),
-          ),
-        )
       ],
     );
   }
